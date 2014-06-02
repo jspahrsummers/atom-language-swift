@@ -1,0 +1,26 @@
+'scopeName' : 'source.swift'
+'fileTypes' : [
+  'swift'
+],
+'name'      : 'Swift'
+'patterns'  : [
+  {
+    'match'   : '\\b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var)\\b'
+    'name'    : 'keyword.declaration.swift'
+  }
+  {
+    'match'   : '\\b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while)\\b'
+    'name'    : 'keyword.statement.swift'
+  }
+  {
+    'match'   : '\\b(as|dynamicType|is|new|super|self|Self|Type|__COLUMN__|__FILE__|__FUNCTION__|__LINE__)\\b'
+    'name'    : 'keyword.expressions-and-types.swift'
+  }
+  {
+    'match'   : '\\b(associativity|didSet|get|infix|inout|left|mutating|none|nonmutating|operator|override|postfix|precedence|prefix|right|set|unowned|unowned\(safe\)|unowned\(unsafe\)|weak|willSet)\\b'
+    'name'    : 'keyword.reserved.swift'
+  }
+  {
+    'include' : 'source.objc'
+  }
+]
