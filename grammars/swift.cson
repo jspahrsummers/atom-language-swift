@@ -20,7 +20,14 @@
     'match'   : '\\b(associativity|didSet|get|infix|inout|left|mutating|none|nonmutating|operator|override|postfix|precedence|prefix|right|set|unowned|unowned\(safe\)|unowned\(unsafe\)|weak|willSet)\\b'
     'name'    : 'keyword.reserved.swift'
   }
-  {
-    'include' : 'source.objc'
-  }
 ]
+'repository':
+  'operator':
+    'patterns': [
+        {
+          'include': '#operator-character'
+        }
+      ]
+  'operator-character':
+    'name': 'keyword.operator.swift'
+    'match': '[\\/=\\-+!*%<>&|^~.]'
