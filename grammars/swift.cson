@@ -22,6 +22,29 @@
   }
 ]
 'repository':
+  'escaped-char':
+    'patterns': [
+      {
+        'name': 'constant.character.escape.swift'
+        'match': '\\\\[0\\\\tnr"\']'
+      }
+      {
+        'name': 'constant.character.escape.swift'
+        'match': '\\\\x[0-9a-fAF-Z][0-9a-fAF-Z]'
+      }
+      {
+        'name': 'constant.character.escape.swift'
+        'match': '\\\\u[0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z]'
+      }
+      {
+        'name': 'constant.character.escape.swift'
+        'match': '\\\\U[0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z]'
+      }
+      {
+        'name': 'invalid.illegal.unrecognized-string-escape.swift'
+        'match': '\\\\[^uxU]'
+      }
+    ]
   'operator':
     'patterns': [
         {
@@ -31,3 +54,45 @@
   'operator-character':
     'name': 'keyword.operator.swift'
     'match': '[\\/=\\-+!*%<>&|^~.]'
+  'quoted-text':
+    'patterns': [
+      {
+        'name': 'meta.embedded.line.swift'
+        'contentName': 'source.swift'
+        'begin': '\\\\\\('
+        'end': '\\)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.section.embedded.begin.swift'
+          '1':
+            'name': 'source.swift'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.section.embedded.end.swift'
+          '1':
+            'name': 'source.swift'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+      {
+        'include': '#escaped-char'
+      }
+    ]
+  'string-literal':
+    'name': 'string.quoted.double.swift'
+    'begin': '"'
+    'end': '"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.swift'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.swift'
+    'patterns': [
+      {
+        'include': '#quoted-text'
+      }
+    ]
