@@ -30,18 +30,10 @@
       }
       {
         'name': 'constant.character.escape.swift'
-        'match': '\\\\x[0-9a-fAF-Z][0-9a-fAF-Z]'
+        'match': '\\\\(x\\h{2}|u\\h{4}|U\\h{8})'
       }
       {
-        'name': 'constant.character.escape.swift'
-        'match': '\\\\u[0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z]'
-      }
-      {
-        'name': 'constant.character.escape.swift'
-        'match': '\\\\U[0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z][0-9a-fAF-Z]'
-      }
-      {
-        'name': 'invalid.illegal.unrecognized-string-escape.swift'
+        'name': 'invalid.illegal.constant.character.escape.swift'
         'match': '\\\\[^uxU]'
       }
     ]
