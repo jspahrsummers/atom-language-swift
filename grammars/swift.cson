@@ -37,6 +37,42 @@
         'match': '\\\\[^uxU]'
       }
     ]
+  'identifier':
+    'match':
+      '(?x)
+            (?<identifier>                \\g<identifier-head> \\g<identifier-characters>?
+              |                         ` \\g<identifier-head> \\g<identifier-characters>? `
+              ){0}
+            (?<identifier-head>           [ a-z A-Z ]
+              |                           [ \\xC2\\xA8 \\xC2\\xAA \\xC2\\xAD \\xC2\\xAF \\xC2\\xB2-\\xC2\\xB5 \\xC2\\xB7-\\xC2\\xBa ]
+              |                           [ \\xC2\\xBC-\\xC2\\xBE \\xC2\\xC0-\\xC2\\xD6 \\xC2\\xD8-\\xC2\\xF6 \\xC2\\xF8-\\xC2\\xFF ]
+              |                           [ \\xC4\\x80-\\xCB\\xBF \\xCD\\xB0-\\xE1\\x99\\xBF \\xE1\\x9A\\x81-\\xE1\\xA0\\x8D \\xE1\\xA0\\x8F-\\xE1\\xB6\\xBF ]
+              |                           [ \\xE1\\xB8\\x80-\\xE1\\xBF\\xBF ]
+              |                           [ \\xE2\\x80\\x8B-\\xE2\\x80\\x8D \\xE2\\x80\\xAA-\\xE2\\x80\\xAE \\xE2\\x80\\xBF-\\xE2\\x81\\x80 \\xE2\\x81\\x94 \\xE2\\x81\\xA0-\\xE2\\x81\\xAF ]
+              |                           [ \\xE2\\x81\\xB0-\\xE2\\x83\\x8F \\xE2\\x84\\x80-\\xE2\\x86\\x8F \\xE2\\x91\\xA0-\\xE2\\x93\\xBF \\xE2\\x9D\\xB6-\\xE2\\x9E\\x93 ]
+              |                           [ \\xE2\\xB0\\x80-\\xE2\\xB7\\xBF \\xE2\\xBA\\x80-\\xE2\\xBF\\xBF ]
+              |                           [ \\xE3\\x80\\x84-\\xE3\\x80\\x87 \\xE3\\x80\\xA1-\\xE3\\x80\\xAF \\xE3\\x80\\xB1-\\xE3\\x80\\xBF \\xE3\\x81\\x80-\\xED\\x9F\\xBF ]
+              |                           [ \\xEF\\xA4\\x80-\\xEF\\xB4\\xBD \\xEF\\xB5\\x80-\\xEF\\xB7\\x8F \\xEF\\xB7\\xB0-\\xEF\\xB8\\x9F \\xEF\\xB8\\xB0-\\xEF\\xB9\\x84 ]
+              |                           [ \\xEF\\xB9\\x87-\\xEF\\xBF\\xBD ]
+              |                           [ \\xF0\\x90\\x80\\x80-\\xF0\\x9F\\xBF\\xBD \\xF0\\xA0\\x80\\x80-\\xF0\\xAF\\xBF\\xBD \\xF0\\xB0\\x80\\x80-\\xF0\\xBF\\xBF\\xBD \\xF1\\x80\\x80\\x80-\\xF1\\x8F\\xBF\\xBD ]
+              |                           [ \\xF1\\x90\\x80\\x80-\\xF1\\x9F\\xBF\\xBD \\xF1\\xA0\\x80\\x80-\\xF1\\xAF\\xBF\\xBD \\xF1\\xB0\\x80\\x80-\\xF1\\xBF\\xBF\\xBD \\xF2\\x80\\x80\\x80-\\xF2\\x8F\\xBF\\xBD ]
+              |                           [ \\xF2\\x90\\x80\\x80-\\xF2\\x9F\\xBF\\xBD \\xF2\\xA0\\x80\\x80-\\xF2\\xAF\\xBF\\xBD \\xF2\\xB0\\x80\\x80-\\xF2\\xBF\\xBF\\xBD \\xF3\\x80\\x80\\x80-\\xF3\\x8F\\xBF\\xBD ]
+              |                           [ \\xF3\\x90\\x80\\x80-\\xF3\\x9F\\xBF\\xBD \\xF3\\xA0\\x80\\x80-\\xF3\\xAF\\xBF\\xBD ]
+              ){0}
+            (?<identifier-character>      \\d
+              |                           [ \\xCC\\x80-\\xCD\\xAF \\xE1\\xB7\\x80-\\xE1\\xB7\\xBF \\xE2\\x83\\x90-\\xE2\\x83\\xBF \\xEF\\xB8\\xA0-\\xEF\\xB8\\xAF ]
+              |                           \\g<identifier-head>
+              ){0}
+            (?<identifier-characters>     \\g<identifier-character> \\g<identifier-characters>?
+              ){0}
+            (?<implicit-parameter-name>   (?<!\\g<identifier-head>) \\$ \\d+ (?!\\g<identifier-head>) (?# FIXME)
+              ){0}
+          \\g<identifier>
+        | \\g<implicit-parameter-name>
+      '
+    'captures':
+      '5': #can't seem to use named captures here
+          'name': 'variable.other.positional.swift'
   'operator':
     'patterns': [
         {
