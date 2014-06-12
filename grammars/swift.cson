@@ -73,6 +73,21 @@
     'captures':
       '5': #can't seem to use named captures here
           'name': 'variable.other.positional.swift'
+  'literal-string':
+    'name': 'string.quoted.double.swift'
+    'begin': '"'
+    'end': '"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.swift'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.swift'
+    'patterns': [
+      {
+        'include': '#quoted-text'
+      }
+    ]
   'operator':
     'patterns': [
         {
@@ -103,20 +118,5 @@
       }
       {
         'include': '#escaped-char'
-      }
-    ]
-  'string-literal':
-    'name': 'string.quoted.double.swift'
-    'begin': '"'
-    'end': '"'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.definition.string.begin.swift'
-    'endCaptures':
-      '0':
-        'name': 'punctuation.definition.string.end.swift'
-    'patterns': [
-      {
-        'include': '#quoted-text'
       }
     ]
