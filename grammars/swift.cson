@@ -56,13 +56,9 @@
         'beginCaptures':
           '0':
             'name': 'punctuation.section.embedded.begin.swift'
-          '1':
-            'name': 'source.swift'
         'endCaptures':
           '0':
             'name': 'punctuation.section.embedded.end.swift'
-          '1':
-            'name': 'source.swift'
         'patterns': [
           {
             'include': '$self'
