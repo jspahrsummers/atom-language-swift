@@ -20,8 +20,45 @@
     'name': 'keyword.reserved.swift'
     'match': '\\b(associativity|didSet|get|infix|inout|left|mutating|none|nonmutating|operator|override|postfix|precedence|prefix|right|set|unowned|unowned\(safe\)|unowned\(unsafe\)|weak|willSet)\\b'
   }
+  {
+    'include': '#comment'
+  }
 ]
 'repository':
+  'comment':
+    'patterns': [
+      {
+        'begin': '/\\*'
+        'captures':
+          '0':
+            'name': 'punctuation.definition.comment.swift'
+        'end': '\\*/'
+        'name': 'comment.block.swift'
+      }
+      {
+        'begin': '(^[ \\t]+)?(?=//)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.whitespace.comment.leading.swift'
+        'end': '(?!\\G)'
+        'patterns': [
+          {
+            'begin': '//'
+            'beginCaptures':
+              '0':
+                'name': 'punctuation.definition.comment.swift'
+            'end': '\\n'
+            'name': 'comment.line.double-slash.swift'
+            'patterns': [
+              {
+                'match': '(?>\\\\\\s*\\n)'
+                'name': 'punctuation.separator.continuation.swift'
+              }
+            ]
+          }
+        ]
+      }
+    ]
   'escaped-char':
     'patterns': [
       {
